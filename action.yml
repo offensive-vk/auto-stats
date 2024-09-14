@@ -1,0 +1,25 @@
+name: 'Auto Stats'
+description: 'Auto Stats Action enables to generate a repository statistics like total number of file, number of words in every file, etc.'
+
+branding:
+  icon: database
+  color: gray-dark
+
+inputs:
+  committer: 
+    description: 'Commiter Name and Email'
+    required: false
+  commit-message: 
+    description: 'Commit Message'
+    required: false
+  github-token:
+    description: 'Github token for Committing.'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/entrypoint.sh
+      shell: bash
+      env:
+        COMMITTER: ${{ inputs.committer }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
