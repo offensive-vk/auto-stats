@@ -2,9 +2,9 @@ FROM ubuntu:24.04
 
 RUN apt-get update && apt-get install -y git
 
-COPY --chmod=744 entrypoint.sh entrypoint.sh
+COPY --chown=1000:1000 --chmod=744 *.sh /
 
-ENTRYPOINT ["/bin/bash -c","entrypoint.sh"]
+ENTRYPOINT ["/bin/bash","/entrypoint.sh"]
 
 LABEL \
     "name"="Auto Repo Stats Action" \
