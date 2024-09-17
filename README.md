@@ -24,7 +24,6 @@ jobs:
     - uses: offensive-vk/auto-stats@v5
       with:
         branch: master
-        committer: github-actions[bot] <github-actions@users.noreply.github.com>
         commit-message: Update Repo Stats
         github-token: ${{ secrets.GITHUB_TOKEN }}
 ```

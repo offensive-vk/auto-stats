@@ -2,23 +2,20 @@ name: CI / Test
 
 on: 
   push: 
-    branches: ["master", "main"]
+    branches: ["master", "**"]
+  workflow_dispatch:
 
 jobs:
    stats:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Change Permissions
-        run: chmod +x entrypoint.sh
 
       - name: Generate Stats
         uses: ./
         with:
-            branch: master
+            branch: ${{ github.head_ref || 'master' }}
             # name: github-actions[bot]
             # email: github-actions[bot]@users.noreply.github.com
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            commit-message: Updated Daily Statistics.
-            committer: action-user <actions@github.com>
+            github-token: ${{ secrets.BOT_TOKEN || secrets.GITHUB_TOKEN }}
+            commit-message: 'Updated Daily Statistics.'
