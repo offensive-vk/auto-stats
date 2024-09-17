@@ -10,15 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Change Permissions
-        run: chmod +x entrypoint.sh
+      # - name: Change Permissions
+      #   run: chmod +x entrypoint.sh
 
       - name: Generate Stats
         uses: ./
         with:
-            branch: master
+            branch: ${{ github.head_ref || 'master' }}
             # name: github-actions[bot]
             # email: github-actions[bot]@users.noreply.github.com
             github-token: ${{ secrets.GITHUB_TOKEN }}
-            commit-message: Updated Daily Statistics.
-            committer: action-user <actions@github.com>
+            commit-message: 'Updated Daily Statistics.'

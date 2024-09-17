@@ -3,7 +3,6 @@
 # Get the inputs from the action.yml file
 SET_NAME="${INPUT_NAME:-"github-actions[bot]"}"
 SET_EMAIL="${INPUT_EMAIL:-"github-actions[bot]@users.noreply.github.com"}"
-COMMITTER="${INPUT_COMMITTER:-${SET_NAME} <${SET_EMAIL}>}"
 MESSAGE="${INPUT_COMMIT_MESSAGE:-"Updated Repo Stats"}"
 BRANCH="${INPUT_BRANCH:-"master"}"
 GITHUB_TOKEN="${INPUT_GITHUB_TOKEN:-${GITHUB_TOKEN}}"
@@ -76,7 +75,6 @@ git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --local user.name "$NAME"
 git config --local user.email "$EMAIL"
 git add STATS.md
-git commit -m "⚡ $MESSAGE
-
-Co-authored-by: $COMMITTER"
+git fetch --all; git pull --verbose
+git commit -m "$MESSAGE"
 git push

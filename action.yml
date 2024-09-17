@@ -12,17 +12,14 @@ inputs:
   email: 
     description: 'Email for Git'
     required: false
-  branch:
-    description: 'Branch to Push Changes'
-    required: true
-  committer: 
-    description: 'Committer Name and Email'
-    required: false
   commit-message: 
     description: 'Commit Message'
     required: false
   github-token:
     description: 'GitHub token for Authorization'
+    required: true
+  branch:
+    description: 'Branch to Push Changes'
     required: true
 
 runs:
