@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Get the inputs from the action.yml file
-NAME=${INPUT_NAME:-${GITHUB_REPOSITORY_OWNER}}
-EMAIL=${INPUT_EMAIL:-${GITHUB_REPOSITORY_OWNER_EMAIL}}
-COMMITTER=${committer:-${NAME} <${EMAIL}>}
-MESSAGE=${commit-message:-"Updated Repo Stats"}
-BRANCH=${branch:-"master"}
-GITHUB_TOKEN=${github-token:-${GITHUB_TOKEN}}
+SET_NAME="${INPUT_NAME:-"github-actions[bot]"}"
+SET_EMAIL="${INPUT_EMAIL:-"github-actions[bot]@users.noreply.github.com"}"
+COMMITTER="${INPUT_COMMITTER:-${SET_NAME} <${SET_EMAIL}>}"
+MESSAGE="${INPUT_COMMIT_MESSAGE:-"Updated Repo Stats"}"
+BRANCH="${INPUT_BRANCH:-"master"}"
+GITHUB_TOKEN="${INPUT_GITHUB_TOKEN:-${GITHUB_TOKEN}}"
 
 # Initialize Variables
 total_characters=0
@@ -53,9 +53,10 @@ else
     average_characters=0
 fi
 
-# Optionally count words too
+# count words too
 total_words=$(wc -w $(find . -type f -not -path '*/\.*') | tail -n 1 | awk '{print $1}')
 
+# Ensure GITHUB_TOKEN is available
 export GITHUB_TOKEN=$GITHUB_TOKEN
 
 # Write final results to the markdown file
@@ -67,10 +68,15 @@ echo "- Average characters per file: $average_characters  " >> STATS.md
 echo "- Largest file: $biggest_file ($biggest_count characters)  " >> STATS.md
 echo "- Smallest file: $smallest_file ($smallest_count characters)  " >> STATS.md
 echo "- Total word count: $total_words  " >> STATS.md
-echo "--- " > STATS.md
+echo "--- " >> STATS.md
 
+# Git configuration and commit
+git config --global user.name "github-actions[bot]"
+git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --local user.name "$NAME"
 git config --local user.email "$EMAIL"
-git add .
-git commit -m "⚡ $MESSAGE"
+git add STATS.md
+git commit -m "⚡ $MESSAGE
+
+Co-authored-by: $COMMITTER"
 git push
