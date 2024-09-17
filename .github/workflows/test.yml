@@ -17,5 +17,5 @@ jobs:
             branch: ${{ github.head_ref || 'master' }}
             # name: github-actions[bot]
             # email: github-actions[bot]@users.noreply.github.com
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+            github-token: ${{ secrets.BOT_TOKEN || secrets.GITHUB_TOKEN }}
             commit-message: 'Updated Daily Statistics.'
