@@ -6,6 +6,15 @@ branding:
   color: gray-dark
 
 inputs:
+  name: 
+    description: 'Username for Git'
+    required: false
+  email: 
+    description: 'Email for Git'
+    required: false
+  branch:
+    description: 'Branch to Push Changes.'
+    required: true
   committer: 
     description: 'Commiter Name and Email'
     required: false

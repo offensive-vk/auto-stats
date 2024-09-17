@@ -16,6 +16,9 @@ jobs:
       - name: Generate Stats
         uses: ./
         with:
+            branch: master
+            name: github-actions[bot]
+            email: github-actions[bot]@users.noreply.github.com
             github-token: ${{ secrets.GITHUB_TOKEN }}
             commit-message: Updated Daily Statistics.
             committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>

@@ -53,7 +53,7 @@ else
     average_characters=0
 fi
 
-# Optionally count words too
+# count words too
 total_words=$(wc -w $(find . -type f -not -path '*/\.*') | tail -n 1 | awk '{print $1}')
 
 # Ensure GITHUB_TOKEN is available
@@ -71,10 +71,11 @@ echo "- Total word count: $total_words  " >> STATS.md
 echo "--- " >> STATS.md
 
 # Git configuration and commit
+git config --global user.name "${{ github.repository_owner }}"
+git config --global user.email "${{ github.repository_owner_email }}"
 git config --local user.name "$NAME"
 git config --local user.email "$EMAIL"
 git add STATS.md
-git commit -m "⚡ $MESSAGE"
-
-# Push to the specified branch
+git commit -m "⚡ $MESSAGE" --co-author "$COMMITTER"
+git push
 git push origin "$BRANCH"
