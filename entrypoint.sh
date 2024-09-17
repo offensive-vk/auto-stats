@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Get the inputs from the action.yml file
-NAME="${INPUT_NAME:-"github-actions[bot]"}"
-EMAIL="${INPUT_EMAIL:-"github-actions[bot]@users.noreply.github.com"}"
-COMMITTER="${INPUT_COMMITTER:-${NAME} <${EMAIL}>}"
+SET_NAME="${INPUT_NAME:-"github-actions[bot]"}"
+SET_EMAIL="${INPUT_EMAIL:-"github-actions[bot]@users.noreply.github.com"}"
+COMMITTER="${INPUT_COMMITTER:-${SET_NAME} <${SET_EMAIL}>}"
 MESSAGE="${INPUT_COMMIT_MESSAGE:-"Updated Repo Stats"}"
-BRANCH="${INPUT_BRANCH:-"master":-${ github.base_ref }}"
+BRANCH="${INPUT_BRANCH:-"master"}"
 GITHUB_TOKEN="${INPUT_GITHUB_TOKEN:-${GITHUB_TOKEN}}"
 
 # Initialize Variables
@@ -71,12 +71,12 @@ echo "- Total word count: $total_words  " >> STATS.md
 echo "--- " >> STATS.md
 
 # Git configuration and commit
-git config --global user.name "${{ github.repository_owner }}"
-git config --global user.email "${{ github.repository_owner_email }}"
+git config --global user.name "github-actions[bot]"
+git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --local user.name "$NAME"
 git config --local user.email "$EMAIL"
 git add STATS.md
-git commit --author=$COMMITTER -m "⚡ $MESSAGE
+git commit -m "⚡ $MESSAGE
 
 Co-authored-by: $COMMITTER"
 git push

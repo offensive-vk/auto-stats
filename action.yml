@@ -1,5 +1,5 @@
 name: 'Auto Stats'
-description: 'Auto Stats Action enables to generate a repository statistics like total number of file, number of words in every file, etc.'
+description: 'Auto Stats Action enables generation of repository statistics like total number of files, number of words in every file, etc.'
 
 branding:
   icon: database
@@ -13,26 +13,26 @@ inputs:
     description: 'Email for Git'
     required: false
   branch:
-    description: 'Branch to Push Changes.'
+    description: 'Branch to Push Changes'
     required: true
   committer: 
-    description: 'Commiter Name and Email'
+    description: 'Committer Name and Email'
     required: false
   commit-message: 
     description: 'Commit Message'
     required: false
   github-token:
-    description: 'Github token for Authorization'
+    description: 'GitHub token for Authorization'
     required: true
 
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/entrypoint.sh
+    - run: ./entrypoint.sh
       shell: bash
       env:
-        NAME: ${{ github.repository_owner }}
-        EMAIL: ${{ github.repository_owner_email }}
-        COMMITTER: ${{ inputs.committer }}
+        NAME: ${{ inputs.name || 'github-actions[bot]' }}
+        EMAIL: ${{ inputs.email || 'github-actions[bot]@noreply.github.com' }}
+        COMMITTER: ${{ inputs.committer || inputs.name || github.repository_owner }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
-        COMMIT-MESSAGE: ${{ inputs.commit-message }}
+        COMMIT-MESSAGE: ${{ inputs.commit-message || 'Updated Repo Stats' }}

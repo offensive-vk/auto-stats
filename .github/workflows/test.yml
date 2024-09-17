@@ -2,7 +2,7 @@ name: CI / Test
 
 on: 
   push: 
-    branches: ["**"]
+    branches: ["master", "main"]
 
 jobs:
    stats:
@@ -17,8 +17,8 @@ jobs:
         uses: ./
         with:
             branch: master
-            name: github-actions[bot]
-            email: github-actions[bot]@users.noreply.github.com
+            # name: github-actions[bot]
+            # email: github-actions[bot]@users.noreply.github.com
             github-token: ${{ secrets.GITHUB_TOKEN }}
             commit-message: Updated Daily Statistics.
             committer: action-user <actions@github.com>
