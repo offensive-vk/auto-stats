@@ -15,6 +15,7 @@ inputs:
   github-token:
     description: 'Github token for Committing.'
     required: true
+
 runs:
   using: "composite"
   steps:
@@ -23,3 +24,4 @@ runs:
       env:
         COMMITTER: ${{ inputs.committer }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
+        COMMIT-MESSAGE: ${{ inputs.commit-message }}
