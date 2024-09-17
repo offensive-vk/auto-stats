@@ -22,7 +22,7 @@ inputs:
     description: 'Commit Message'
     required: false
   github-token:
-    description: 'Github token for Committing.'
+    description: 'Github token for Authorization'
     required: true
 
 runs:
@@ -31,6 +31,8 @@ runs:
     - run: ${{ github.action_path }}/entrypoint.sh
       shell: bash
       env:
+        NAME: ${{ github.repository_owner }}
+        EMAIL: ${{ github.repository_owner_email }}
         COMMITTER: ${{ inputs.committer }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
         COMMIT-MESSAGE: ${{ inputs.commit-message }}

@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Get the inputs from the action.yml file
-NAME="${INPUT_NAME:-${{ github.repository_owner }}}"
-EMAIL="${INPUT_EMAIL:-${{ github.repository_owner_email }}}"
+NAME="${INPUT_NAME:-"github-actions[bot]"}"
+EMAIL="${INPUT_EMAIL:-"github-actions[bot]@users.noreply.github.com"}"
 COMMITTER="${INPUT_COMMITTER:-${NAME} <${EMAIL}>}"
 MESSAGE="${INPUT_COMMIT_MESSAGE:-"Updated Repo Stats"}"
-BRANCH="${INPUT_BRANCH:-"master":-${{ github.base_ref }}}"
+BRANCH="${INPUT_BRANCH:-"master":-${ github.base_ref }}"
 GITHUB_TOKEN="${INPUT_GITHUB_TOKEN:-${GITHUB_TOKEN}}"
 
 # Initialize Variables
@@ -76,6 +76,7 @@ git config --global user.email "${{ github.repository_owner_email }}"
 git config --local user.name "$NAME"
 git config --local user.email "$EMAIL"
 git add STATS.md
-git commit -m "⚡ $MESSAGE" --co-author "$COMMITTER"
+git commit --author=$COMMITTER -m "⚡ $MESSAGE
+
+Co-authored-by: $COMMITTER"
 git push
-git push origin "$BRANCH"
