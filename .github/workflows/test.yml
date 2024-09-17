@@ -1,0 +1,16 @@
+name: Automated Stats
+
+on: [push]
+
+jobs:
+   stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Stats
+        uses: ./
+        with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            commit-message: Updated Daily Statistics.
+            commiter: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
