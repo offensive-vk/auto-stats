@@ -2,12 +2,9 @@ name: CI / Test
 
 on: 
   push: 
-    branches: ["master", "main"]
+    branches: ["master", "**"]
   workflow_dispatch:
-    inputs:
-      name:
-        type: string
-        required: true
+
 jobs:
    stats:
     runs-on: ubuntu-latest
