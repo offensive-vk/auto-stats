@@ -13,4 +13,4 @@ jobs:
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             commit-message: Updated Daily Statistics.
-            commiter: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+            committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
