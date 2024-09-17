@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      # - name: Change Permissions
-      #   run: chmod +x entrypoint.sh
 
       - name: Generate Stats
         uses: ./

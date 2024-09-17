@@ -72,8 +72,8 @@ echo "--- " >> STATS.md
 # Git configuration and commit
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
-git config --local user.name "$NAME"
-git config --local user.email "$EMAIL"
+git config --local user.name "$SET_NAME"
+git config --local user.email "$SET_EMAIL"
 git add STATS.md
 git fetch --all; git pull --verbose
 git commit -m "$MESSAGE"
