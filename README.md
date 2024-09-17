@@ -1,6 +1,6 @@
-# Auto Repo Sync
+# Auto Stats
 
-Auto Stats Action enables to generate a repository statistics like total number of file, number of words in every file, etc.
+Auto Stats Action enables to generate a repository statistics file like total number of file, number of words in every file, etc.
 
 ## Example
 
@@ -23,6 +23,7 @@ jobs:
     - name: Generate Stats
     - uses: offensive-vk/auto-stats@v5
       with:
+        branch: master
         committer: github-actions[bot] <github-actions@users.noreply.github.com>
         commit-message: Update Repo Stats
         github-token: ${{ secrets.GITHUB_TOKEN }}
