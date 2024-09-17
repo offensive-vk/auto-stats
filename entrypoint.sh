@@ -3,7 +3,7 @@
 # Get the inputs from the action.yml file
 SET_NAME="${INPUT_NAME:-"github-actions[bot]"}"
 SET_EMAIL="${INPUT_EMAIL:-"github-actions[bot]@users.noreply.github.com"}"
-MESSAGE="${INPUT_COMMIT-MESSAGE:-"Updated Repo Stats"}"
+MESSAGE="${INPUT_MESSAGE:-"Updated Repo Stats"}"
 BRANCH="${INPUT_BRANCH:-"master"}"
 GITHUB_TOKEN="${INPUT_GITHUB_TOKEN:-${GITHUB_TOKEN}}"
 

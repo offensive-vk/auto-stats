@@ -12,7 +12,7 @@ inputs:
   email: 
     description: 'Email for Git'
     required: false
-  commit-message: 
+  message: 
     description: 'Commit Message'
     required: false
   github-token:
@@ -32,4 +32,4 @@ runs:
         EMAIL: ${{ inputs.email || 'github-actions[bot]@noreply.github.com' }}
         COMMITTER: ${{ inputs.committer || inputs.name || github.repository_owner }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
-        COMMIT-MESSAGE: ${{ inputs.commit-message || 'Updated Repo Stats' }}
+        COMMIT_MESSAGE: ${{ inputs.message || 'Updated Repo Stats' }}
