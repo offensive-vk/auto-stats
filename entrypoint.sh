@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Get the inputs from the action.yml file
-NAME="${INPUT_NAME:-${GITHUB_REPOSITORY_OWNER}}"
-EMAIL="${INPUT_EMAIL:-${GITHUB_REPOSITORY_OWNER_EMAIL}}"
+NAME="${INPUT_NAME:-${{ github.repository_owner }}}"
+EMAIL="${INPUT_EMAIL:-${{ github.repository_owner_email }}}"
 COMMITTER="${INPUT_COMMITTER:-${NAME} <${EMAIL}>}"
 MESSAGE="${INPUT_COMMIT_MESSAGE:-"Updated Repo Stats"}"
-BRANCH="${INPUT_BRANCH:-"master"}"
+BRANCH="${INPUT_BRANCH:-"master":-${{ github.base_ref }}}"
 GITHUB_TOKEN="${INPUT_GITHUB_TOKEN:-${GITHUB_TOKEN}}"
 
 # Initialize Variables
