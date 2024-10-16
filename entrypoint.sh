@@ -69,11 +69,11 @@ echo "- Largest file: $biggest_file ($biggest_count characters)  " >> STATS.md
 echo "- Smallest file: $smallest_file ($smallest_count characters)  " >> STATS.md
 echo "- Total word count: $total_words  " >> STATS.md
 echo "--- " >> STATS.md
-echo -e "# ✨✨✨" >> STATS.md
+echo "# ✨✨✨" >> STATS.md
 
 # Git configuration and commit the changes
-git config --local user.name "$SET_NAME"
-git config --local user.email "$SET_EMAIL"
+# git config --local user.name "$SET_NAME"
+# git config --local user.email "$SET_EMAIL"
 
 # Ensure all changes are added
 git add STATS.md
