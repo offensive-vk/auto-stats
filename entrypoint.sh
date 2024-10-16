@@ -6,7 +6,7 @@ SET_NAME="${INPUT_NAME}"
 SET_EMAIL="${INPUT_EMAIL}"
 MESSAGE="${INPUT_MESSAGE}"
 BRANCH="${INPUT_BRANCH}"
-GITHUB_TOKEN="${INPUT_GITHUB_TOKEN:-${GITHUB_TOKEN}}"
+GITHUB_TOKEN="${INPUT_GITHUB_TOKEN}"
 OPTIONS="${INPUT_OPTIONS}"
 
 # Initialize Variables
@@ -70,13 +70,16 @@ echo "- Largest file: $biggest_file ($biggest_count characters)  " >> STATS.md
 echo "- Smallest file: $smallest_file ($smallest_count characters)  " >> STATS.md
 echo "- Total word count: $total_words  " >> STATS.md
 echo "--- " >> STATS.md
+echo -e "# ✨✨✨" >> STATS.md
 
-# Git configuration and commit
+# Git configuration and commit the changes.
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --local user.name "$SET_NAME"
 git config --local user.email "$SET_EMAIL"
 git add STATS.md
-git fetch --all; git pull --verbose
+git fetch --all 
+git pull --verbose
 git commit "$OPTIONS" -m "$MESSAGE"
 git push
+git status

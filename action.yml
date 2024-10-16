@@ -37,6 +37,6 @@ runs:
       env:
         NAME: ${{ inputs.name }}
         EMAIL: ${{ inputs.email }}
-        COMMITTER: ${{ inputs.committer || inputs.name || github.repository_owner }}
+        COMMITTER: ${{ inputs.committer || inputs.name }}
         GITHUB_TOKEN: ${{ inputs.github-token }}
         COMMIT_MESSAGE: ${{ inputs.message }}
