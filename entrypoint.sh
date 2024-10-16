@@ -9,10 +9,9 @@ GITHUB_TOKEN="${INPUT_GITHUB_TOKEN}"
 OPTIONS="${INPUT_OPTIONS}"
 
 # Set Git identity both globally and locally
+git config --global --add safe.directory /github/workspace
 git config --global user.name "$SET_NAME"
 git config --global user.email "$SET_EMAIL"
-git config --local user.name "$SET_NAME"
-git config --local user.email "$SET_EMAIL"
 
 # Initialize Variables
 total_characters=0
@@ -24,7 +23,8 @@ smallest_count=1000000
 timestamp=$(date '+%b %d, %A %I:%M:%S %p')
 
 # Create Required Files
-echo "# Daily Repository Statistics " > STATS.md
+echo "✨✨✨ " > STATS.md
+echo "# Daily Repository Statistics " >> STATS.md
 echo "Generated on $timestamp  " >> STATS.md
 echo "" >> STATS.md
 
@@ -72,8 +72,6 @@ echo "--- " >> STATS.md
 echo -e "# ✨✨✨" >> STATS.md
 
 # Git configuration and commit the changes
-git config --global user.name "github-actions[bot]"
-git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --local user.name "$SET_NAME"
 git config --local user.email "$SET_EMAIL"
 

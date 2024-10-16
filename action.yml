@@ -31,7 +31,7 @@ inputs:
     default: ''
 runs:
   using: docker
-  image: docker://ghcr.io/offensive-vk/auto-stats:latest
+  image: Dockerfile
   env:
     NAME: ${{ inputs.name }}
     EMAIL: ${{ inputs.email }}
