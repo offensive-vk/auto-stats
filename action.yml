@@ -28,7 +28,7 @@ inputs:
   options:
     description: 'Commit flags'
     required: false
-    default: ''
+    default: '-a'
 runs:
   using: docker
   image: Dockerfile

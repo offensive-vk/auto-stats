@@ -9,7 +9,6 @@ GITHUB_TOKEN="${INPUT_GITHUB_TOKEN}"
 OPTIONS="${INPUT_OPTIONS}"
 
 # Set Git identity both globally and locally
-git config --global --add safe.directory /github/workspace
 git config --global user.name "$SET_NAME"
 git config --global user.email "$SET_EMAIL"
 
@@ -94,3 +93,6 @@ git push origin "$BRANCH"
 
 # Check the status
 git status
+
+
+# ** END OF SCRIPT **
