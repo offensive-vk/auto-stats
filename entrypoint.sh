@@ -1,12 +1,18 @@
 #!/bin/bash
 
 # Get the inputs from the action.yml file
-SET_NAME="${INPUT_NAME}"
-SET_EMAIL="${INPUT_EMAIL}"
-MESSAGE="${INPUT_MESSAGE}"
+SET_NAME="${INPUT_NAME:-github-actions[bot]}"
+SET_EMAIL="${INPUT_EMAIL:-github-actions[bot]@users.noreply.github.com}"
+MESSAGE="${INPUT_MESSAGE:-Updated Repo Stats}"
 BRANCH="${INPUT_BRANCH:-master}"
 GITHUB_TOKEN="${INPUT_GITHUB_TOKEN}"
 OPTIONS="${INPUT_OPTIONS}"
+
+# Set Git identity both globally and locally
+git config --global user.name "$SET_NAME"
+git config --global user.email "$SET_EMAIL"
+git config --local user.name "$SET_NAME"
+git config --local user.email "$SET_EMAIL"
 
 # Initialize Variables
 total_characters=0
