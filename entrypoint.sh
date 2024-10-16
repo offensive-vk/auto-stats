@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Get inputs from the action.yml file
-SET_NAME="${INPUT_NAME}"
-SET_EMAIL="${INPUT_EMAIL}"
-MESSAGE="${INPUT_MESSAGE}"
-BRANCH="${INPUT_BRANCH}"
-GITHUB_TOKEN="${INPUT_GITHUB_TOKEN}"
-OPTIONS="${INPUT_OPTIONS}"
+# Get inputs from the action.yml file (via environment variables)
+SET_NAME="${NAME}"
+SET_EMAIL="${EMAIL}"
+MESSAGE="${COMMIT_MESSAGE}"
+BRANCH="${BRANCH:-master}"
+GITHUB_TOKEN="${GITHUB_TOKEN}"
+OPTIONS="${OPTIONS}"
 
 # Initialize variables
 total_characters=0
@@ -18,8 +18,8 @@ smallest_count=1000000
 timestamp=$(date '+%b %d, %A %I:%M:%S %p')
 
 # Create the STATS.md file
-echo "# Daily Repository Statistics " > STATS.md
-echo "Generated on $timestamp  " >> STATS.md
+echo "# Daily Repository Statistics" > STATS.md
+echo "Generated on $timestamp" >> STATS.md
 echo "" >> STATS.md
 
 # Iterate through all files (excluding hidden files and directories)
@@ -42,7 +42,7 @@ while IFS= read -r -d '' file; do
         smallest_file=$file_name
     fi
 
-    echo "$file_name: $char_count characters  " >> STATS.md
+    echo "$file_name: $char_count characters" >> STATS.md
 done < <(find . -type f -not -path '*/\.*' -print0)
 
 # Calculate average characters per file
@@ -51,20 +51,20 @@ average_characters=$(( total_files > 0 ? total_characters / total_files : 0 ))
 # Count total words across all files
 total_words=$(find . -type f -not -path '*/\.*' -exec cat {} + | wc -w)
 
-# Ensure GITHUB_TOKEN is available
+# Ensure the GITHUB_TOKEN is available
 export GITHUB_TOKEN="$GITHUB_TOKEN"
 
 # Write summary to STATS.md
 {
     echo ""
-    echo "## Summary ⛽  "
-    echo "- Total files: $total_files  "
-    echo "- Total character count: $total_characters  "
-    echo "- Average characters per file: $average_characters  "
-    echo "- Largest file: $biggest_file ($biggest_count characters)  "
-    echo "- Smallest file: $smallest_file ($smallest_count characters)  "
-    echo "- Total word count: $total_words  "
-    echo "--- "
+    echo "## Summary ⛽"
+    echo "- Total files: $total_files"
+    echo "- Total character count: $total_characters"
+    echo "- Average characters per file: $average_characters"
+    echo "- Largest file: $biggest_file ($biggest_count characters)"
+    echo "- Smallest file: $smallest_file ($smallest_count characters)"
+    echo "- Total word count: $total_words"
+    echo "---"
     echo -e "# ✨✨✨"
 } >> STATS.md
 
@@ -81,7 +81,7 @@ if git diff-index --quiet HEAD --; then
     echo "No changes to commit."
 else
     git commit $OPTIONS -m "$MESSAGE"
-    git push
+    git push origin "$BRANCH"
 fi
 
 # Display Git status
